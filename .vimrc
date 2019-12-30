@@ -31,7 +31,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'phpactor/phpactor', {'for': 'php', 'do': 'composer install'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'terryma/vim-multiple-cursors'
+"Plug 'terryma/vim-multiple-cursors'
 
 call plug#end()
 "====================== Settings =======================
@@ -169,8 +169,8 @@ vmap <silent><Leader>em :<C-U>call phpactor#ExtractMethod()<CR>
 "========================== NerdTree ==============================
 let NERDTreeShowHidden = 1
 let NERDTreeQuitOnOpen = 1
-map <C-n> :NERDTreeToggle <CR>
-map <C-l> :NERDTreeFind <CR>
+nmap <C-n> :NERDTreeToggle <CR>
+nnoremap <silent> <C-o>y :NERDTreeFind<CR>
 
 
 "========================== NerdCommentor ==============================
@@ -182,17 +182,17 @@ set cmdheight=2
 set updatetime=300
 
 "========================== vim multiple cursor ==============================
-let g:multi_cursor_use_default_mapping=0
+"let g:multi_cursor_use_default_mapping=0
 
 " Default mapping
-let g:multi_cursor_start_word_key      = '<C-S-n>'
-let g:multi_cursor_select_all_word_key = '<A-n>'
-let g:multi_cursor_start_key           = 'g<C-n>'
-let g:multi_cursor_select_all_key      = 'g<A-n>'
-let g:multi_cursor_next_key            = '<C-S-n>'
-let g:multi_cursor_prev_key            = '<C-p>'
-let g:multi_cursor_skip_key            = '<C-x>'
-let g:multi_cursor_quit_key            = '<Esc>'
+"let g:multi_cursor_start_word_key      = '<C-S-n>'
+"let g:multi_cursor_select_all_word_key = '<A-n>'
+"let g:multi_cursor_start_key           = 'g<C-n>'
+"let g:multi_cursor_select_all_key      = 'g<A-n>'
+"let g:multi_cursor_next_key            = '<C-S-n>'
+"let g:multi_cursor_prev_key            = '<C-p>'
+"let g:multi_cursor_skip_key            = '<C-x>'
+"let g:multi_cursor_quit_key            = '<Esc>'
 
 "========================== Highlight word under cursor ==============================
 "set updatetime=10
