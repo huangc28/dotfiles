@@ -167,6 +167,7 @@ vmap <silent><Leader>ee :<C-U>call phpactor#ExtractExpression(v:true)<CR>
 vmap <silent><Leader>em :<C-U>call phpactor#ExtractMethod()<CR>
 
 "========================== NerdTree ==============================
+let NERDTreeShowHidden = 1
 let NERDTreeQuitOnOpen = 1
 map <C-n> :NERDTreeToggle <CR>
 map <C-l> :NERDTreeFind <CR>
