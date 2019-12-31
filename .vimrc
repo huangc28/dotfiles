@@ -51,6 +51,10 @@ set softtabstop=4
 set tabstop=4
 set tags+=~/.vim/tags,./tags,tags;
 set hidden " leave buffer without save
+set showbreak=↪\ 
+set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨
+set laststatus=2
+set statusline+=%F
 autocmd FileType make setlocal noexpandtab
 autocmd FileType php setlocal omnifunc=phpactor#Complete
 autocmd FileType js,vue,css,html,typescript setlocal sw=2 sts=2 ts=2
@@ -170,8 +174,7 @@ vmap <silent><Leader>em :<C-U>call phpactor#ExtractMethod()<CR>
 let NERDTreeShowHidden = 1
 let NERDTreeQuitOnOpen = 1
 nmap <C-n> :NERDTreeToggle <CR>
-nnoremap <silent> <C-o>y :NERDTreeFind<CR>
-
+nnoremap <silent> <C-o> :NERDTreeFind<CR>
 
 "========================== NerdCommentor ==============================
 vmap ++ <plug>NERDCommenterToggle
@@ -180,6 +183,24 @@ nmap ++ <plug>NERDCommenterToggle
 "========================== coc.nvim ==============================
 set cmdheight=2
 set updatetime=300
+
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 "========================== vim multiple cursor ==============================
 "let g:multi_cursor_use_default_mapping=0
@@ -206,3 +227,9 @@ set updatetime=300
 "endfunction
 
 "autocmd! CursorHold,CursorHoldI * call HighlightWordUnderCursor()
+
+"========================== Highlist trailing white space ==============================
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+" Show trailing whitepace and spaces before a tab:
+autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\t/
