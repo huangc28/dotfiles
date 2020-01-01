@@ -55,9 +55,11 @@ set showbreak=↪\
 set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨
 set laststatus=2
 set statusline+=%F
+set smarttab
+set cindent
 autocmd FileType make setlocal noexpandtab
 autocmd FileType php setlocal omnifunc=phpactor#Complete
-autocmd FileType js,vue,css,html,typescript setlocal sw=2 sts=2 ts=2
+autocmd FileType js,vue,css,html,typescript,javascript setlocal sw=2 sts=2 ts=2 expandtab
 nmap <F2> :ctags -R<CR>
 nmap <F4> :w<CR>:make<CR>
 nmap <F5> :w<CR>
@@ -80,7 +82,14 @@ if has("clipboard") " yank to clipboard
                 set clipboard+=unnamedplus
                   endif
               endif
-let mapleader=" " " set leader key to space
+
+"===================== javascript ===========================
+"autocmd FileType javascript,js,vue,jsx,tsx setlocal shiftwidth=2 tabstop=2 softtabstop=0 expandtab
+"autocmd FileType javascript set sw=2
+"autocmd FileType javascript set ts=2
+"autocmd FileType javascript set sts=2
+"autocmd FileType javascript set textwidth=79
+
 "===================== ctrlp ===========================
 let g:ctrlp_map='<D-p>'
 "===================== Ctags ===========================
