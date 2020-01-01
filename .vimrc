@@ -55,8 +55,6 @@ set showbreak=↪\
 set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨
 set laststatus=2
 set statusline+=%F
-set smarttab
-set cindent
 autocmd FileType make setlocal noexpandtab
 autocmd FileType php setlocal omnifunc=phpactor#Complete
 autocmd FileType js,vue,css,html,typescript,javascript setlocal sw=2 sts=2 ts=2 expandtab
@@ -102,7 +100,7 @@ if executable("ag")
 
     " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
     let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-    
+
     " ag is fast enough the CtrlP doesn't need to cache
     let g:ctrlp_use_caching = 0
 endif
