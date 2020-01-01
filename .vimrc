@@ -82,14 +82,6 @@ if has("clipboard") " yank to clipboard
                 set clipboard+=unnamedplus
                   endif
               endif
-
-"===================== javascript ===========================
-"autocmd FileType javascript,js,vue,jsx,tsx setlocal shiftwidth=2 tabstop=2 softtabstop=0 expandtab
-"autocmd FileType javascript set sw=2
-"autocmd FileType javascript set ts=2
-"autocmd FileType javascript set sts=2
-"autocmd FileType javascript set textwidth=79
-
 "===================== ctrlp ===========================
 let g:ctrlp_map='<D-p>'
 "===================== Ctags ===========================
