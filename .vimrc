@@ -80,6 +80,7 @@ if has("clipboard") " yank to clipboard
                 set clipboard+=unnamedplus
                   endif
               endif
+autocmd BufEnter * silent! lcd %:p:h
 "===================== ctrlp ===========================
 let g:ctrlp_map='<D-p>'
 "===================== Ctags ===========================
@@ -157,7 +158,8 @@ nmap <Leader>mm :call phpactor#ContextMenu()<CR>
 " Invoke the navigation menu
 nmap <Leader>nn :call phpactor#Navigate()<CR>
 " Goto definition of class or class member under the cursor
-nmap gd :call phpactor#GotoDefinition()<CR>
+" File type dependent key mapping: https://vi.stackexchange.com/questions/10664/file-type-dependent-key-mapping/10666
+autocmd FileType php nmap <buffer> gd :call phpactor#GotoDefinition()<CR>
 " Transform the classes in the current file
 nmap <Leader>tt :call phpactor#Transform()<CR>
 " Generate a new class (replacing the current file)
@@ -180,6 +182,17 @@ vmap ++ <plug>NERDCommenterToggle
 nmap ++ <plug>NERDCommenterToggle
 
 "========================== coc.nvim ==============================
+
+" extensions
+let g:coc_global_extensions = [
+  \ 'coc-snippets',
+  \ 'coc-pairs',
+  \ 'coc-tsserver',
+  \ 'coc-eslint',
+  \ 'coc-prettier',
+  \ 'coc-json',
+  \ ]
+set hidden "Some servers have issues with backup files, see #649 set nobackup set nowritebackup " Better display for messages set cmdheight=2 " You will have bad experience for diagnostic messages when it's default 4000.
 set cmdheight=2
 set updatetime=300
 
@@ -200,6 +213,11 @@ endfunction
 " position.
 " Coc only does snippet and additional edit on confirm.
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" Remap keys for gotos
+autocmd FileType javascript nmap <silent> gd <Plug>(coc-definition)
+autocmd FileType javascript nmap <silent> gy <Plug>(coc-type-definition)
+autocmd FileType javascript nmap <silent> gi <Plug>(coc-implementation)
+autocmd FileType javascript nmap <silent> gr <Plug>(coc-references)
 
 "========================== vim multiple cursor ==============================
 "let g:multi_cursor_use_default_mapping=0
