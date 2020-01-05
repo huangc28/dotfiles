@@ -31,6 +31,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'phpactor/phpactor', {'for': 'php', 'do': 'composer install'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
 "Plug 'terryma/vim-multiple-cursors'
 
 call plug#end()
@@ -250,3 +251,7 @@ highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 " Show trailing whitepace and spaces before a tab:
 autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\t/
+
+
+"========================== go vim ==============================
+let g:go_fmt_command = "goimports"
