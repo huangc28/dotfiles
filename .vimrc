@@ -15,8 +15,8 @@ Plug 'tpope/vim-surround'
 Plug 'kylef/apiblueprint.vim'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'digitaltoad/vim-pug'
-Plug 'storyn26383/vim-vue'
 Plug 'pangloss/vim-javascript'
+Plug 'posva/vim-vue'
 Plug 'toyamarinyon/vim-swift'
 Plug 'udalov/kotlin-vim'
 Plug 'dart-lang/dart-vim-plugin'
@@ -33,8 +33,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
 "Plug 'terryma/vim-multiple-cursors'
-
 call plug#end()
+
 "====================== Settings =======================
 syntax on
 set encoding=UTF-8
@@ -52,7 +52,7 @@ set softtabstop=4
 set tabstop=4
 set tags+=~/.vim/tags,./tags,tags;
 set hidden " leave buffer without save
-set showbreak=↪\ 
+set showbreak=↪\
 set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨
 set laststatus=2
 set statusline+=%F
@@ -81,7 +81,7 @@ if has("clipboard") " yank to clipboard
                 set clipboard+=unnamedplus
                   endif
               endif
-autocmd BufEnter * silent! lcd %:p:h
+"autocmd BufEnter * silent! lcd %:p:h
 "===================== ctrlp ===========================
 let g:ctrlp_map='<D-p>'
 "===================== Ctags ===========================
@@ -145,7 +145,7 @@ let g:indentLine_leadingSpaceEnabled = 0
 let g:indentLine_color_term = 239
 let g:indentLine_leadingSpaceChar = '.'
 " autocmd FileType html,css,php,c,cpp,swift,python,ruby :IndentLinesEnable
-autocmd FileType html,css,php,c,cpp,swift,python,ruby 
+autocmd FileType html,css,php,c,cpp,swift,python,ruby
 "=========================== indentLine ============================
 let g:NERDTreeDirArrows = 1
 let g:NERDTreeDirArrowExpandable = '▸'
@@ -237,10 +237,10 @@ autocmd FileType javascript nmap <silent> gr <Plug>(coc-references)
 "set updatetime=10
 
 "function! HighlightWordUnderCursor()
-    "if getline(".")[col(".")-1] !~# '[[:punct:][:blank:]]' 
-        "exec 'match' 'Search' '/\V\<'.expand('<cword>').'\>/' 
-    "else 
-        "match none 
+    "if getline(".")[col(".")-1] !~# '[[:punct:][:blank:]]'
+        "exec 'match' 'Search' '/\V\<'.expand('<cword>').'\>/'
+    "else
+        "match none
     "endif
 "endfunction
 
