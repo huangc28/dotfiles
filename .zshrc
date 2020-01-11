@@ -1,7 +1,8 @@
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/apple/.oh-my-zsh"
+#export ZSH="/Users/apple/.oh-my-zsh"
+export ZSH="${HOME}/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -160,6 +161,8 @@ source $ZSH/oh-my-zsh.sh
 #   export EDITOR='mvim'
 # fi
 
+
+
 #
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -179,8 +182,8 @@ source $ZSH/oh-my-zsh.sh
 [[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/apple/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/apple/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f "${HOME}/google-cloud-sdk/path.zsh.inc" ]; then . "${HOME}/google-cloud-sdk/path.zsh.inc"; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/apple/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/apple/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f "${HOME}/google-cloud-sdk/completion.zsh.inc" ]; then . "${HOME}/google-cloud-sdk/completion.zsh.inc"; fi
 
