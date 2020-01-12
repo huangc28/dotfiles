@@ -43,6 +43,7 @@ call plug#end()
 syntax on
 set encoding=UTF-8
 set nu
+set hlsearch
 set incsearch
 set ignorecase
 set autoread
@@ -74,6 +75,8 @@ nmap <Leader>s :LeadingSpaceToggle<CR>
 nmap <Leader>l :IndentLinesToggle<CR>
 nmap <Leader>b :Buffer<CR>
 nmap <Leader>f :Files<CR>
+" Press Space to turn off highlighting and clear any message already displayed.
+nnoremap <silent> <Esc> :nohlsearch<Bar>:echo<CR>
 noremap <Tab> :bnext<CR>
 noremap <S-Tab> :bprevious<CR>
 noremap <C-x> :bd<CR>
@@ -95,7 +98,7 @@ function! UpdateTags()
   endif
 endfunction
 autocmd BufWritePost *.php,*.cpp,*.cc,*.h,*.c call UpdateTags()
-"======================= Ag + fzf ==========================
+"======================= fzf ==========================
 " @ref https://aonemd.github.io/blog/finding-things-in-vim
 " search includes hidden files
 command! -bang -nargs=? -complete=dir HFiles
