@@ -15,8 +15,6 @@ Plug 'tpope/vim-surround'
 Plug 'kylef/apiblueprint.vim'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'digitaltoad/vim-pug'
-Plug 'pangloss/vim-javascript'
-Plug 'posva/vim-vue'
 Plug 'toyamarinyon/vim-swift'
 Plug 'udalov/kotlin-vim'
 Plug 'dart-lang/dart-vim-plugin'
@@ -25,13 +23,19 @@ Plug 'plasticboy/vim-markdown'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'leafgarland/typescript-vim'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdcommenter'
 Plug 'phpactor/phpactor', {'for': 'php', 'do': 'composer install'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
+
+" Javascript plugins
+Plug 'pangloss/vim-javascript'
+Plug 'posva/vim-vue'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'maxmellon/vim-jsx-pretty'
+
 "Plug 'terryma/vim-multiple-cursors'
 call plug#end()
 
@@ -69,7 +73,6 @@ nmap <Leader>i :IndentLinesToggle<CR>
 nmap <Leader>s :LeadingSpaceToggle<CR>
 nmap <Leader>l :IndentLinesToggle<CR>
 nmap <Leader>b :Buffer<CR>
-nmap <Leader>a :Ag<CR>
 nmap <Leader>f :Files<CR>
 noremap <Tab> :bnext<CR>
 noremap <S-Tab> :bprevious<CR>
@@ -82,8 +85,6 @@ if has("clipboard") " yank to clipboard
                   endif
               endif
 "autocmd BufEnter * silent! lcd %:p:h
-"===================== ctrlp ===========================
-let g:ctrlp_map='<D-p>'
 "===================== Ctags ===========================
 function! UpdateTags()
   let tags = 'tags'
@@ -94,18 +95,20 @@ function! UpdateTags()
   endif
 endfunction
 autocmd BufWritePost *.php,*.cpp,*.cc,*.h,*.c call UpdateTags()
-"======================= Ag silversearch ==========================
+"======================= Ag + fzf ==========================
+" @ref https://aonemd.github.io/blog/finding-things-in-vim
+" search includes hidden files
+command! -bang -nargs=? -complete=dir HFiles
+  \ call fzf#vim#files(<q-args>, {'source': 'ag --hidden --ignore .git -g ""'}, <bang>0)
+
+nmap <Leader>a :HFiles<CR>
+
 "@ref: https://thoughtbot.com/blog/faster-grepping-in-vim
 if executable("ag")
     " Use ag over grep
     set grepprg=ag\ --nogroup\ --nocolor
-
-    " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
-    " ag is fast enough the CtrlP doesn't need to cache
-    let g:ctrlp_use_caching = 0
 endif
+
 "======================= Air Line ==========================
 let g:airline_theme="tomorrow"
 let g:airline_powerline_fonts = 1
@@ -255,3 +258,6 @@ autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\t/
 
 "========================== go vim ==============================
 let g:go_fmt_command = "goimports"
+
+"========================== vim-javascript ==============================
+let g:vim_jsx_pretty_colorful_config = 1

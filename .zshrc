@@ -66,6 +66,9 @@ else
 	echo
 fi
 
+# fzf default command
+export FZF_DEFAULT_COMMAND='ag -l --nogroup  --nocolor --hidden -g ""'
+
 # export GO path
 export GOPATH="/Users/apple/go"
 export SSGOPATH="$GOPATH/src/github.com/virtualjoy/go-backend-api"
@@ -160,8 +163,6 @@ source $ZSH/oh-my-zsh.sh
 # else
 #   export EDITOR='mvim'
 # fi
-
-
 
 #
 # Compilation flags
