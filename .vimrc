@@ -77,8 +77,8 @@ nmap <Leader>b :Buffer<CR>
 nmap <Leader>f :Files<CR>
 " Press Space to turn off highlighting and clear any message already displayed.
 nnoremap <silent> <Esc> :nohlsearch<Bar>:echo<CR>
-noremap <Tab> :bnext<CR>
-noremap <S-Tab> :bprevious<CR>
+noremap <C-]> :bnext<CR>
+noremap <C-[> :bprevious<CR>
 noremap <C-x> :bd<CR>
 let g:vim_markdown_folding_disabled = 1
 if has("clipboard") " yank to clipboard
