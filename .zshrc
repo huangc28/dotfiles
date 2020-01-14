@@ -11,7 +11,7 @@ export ZSH="${HOME}/.oh-my-zsh"
 ZSH_THEME="powerlevel9k/powerlevel9k"
 
 # powerlevel9k configs
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs history time)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs history)
 POWERLEVEL9K_MODE=nerdfont-complete
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
 POWERLEVEL9K=truncate_beginning
@@ -19,6 +19,8 @@ POWERLEVEL9K_TIME_BACKGROUND=black
 POWERLEVEL9K_TIME_FOREGROUND=white
 POWERLEVEL9K_TIME_FORMAT=%D{%I:%M}
 POWERLEVEL9K_STATUS_VERBOSE=false
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
 
 POWERLEVEL9K_VCS_CLEAN_FOREGROUND=black
 POWERLEVEL9K_VCS_CLEAN_BACKGROUND=green
@@ -46,8 +48,8 @@ POWERLEVEL9K_CUSTOM_OS_ICON='echo   $(whoami) '
 POWERLEVEL9K_CUSTOM_OS_ICON_BACKGROUND=red
 POWERLEVEL9K_CUSTOM_OS_ICON_FOREGROUND=white
 
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(custom_os_icon ssh root_indicator dir dir_writable vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(command_execution_time status background_jobs time ram)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(custom_os_icon ssh root_indicator dir dir_writable vcs newline)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(command_execution_time status background_jobs ram)
 
 POWERLEVEL9K_DIR_ETC_BACKGROUND='007'
 POWERLEVEL9K_DIR_ETC_FOREGROUND='005'
