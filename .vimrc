@@ -104,7 +104,8 @@ autocmd BufWritePost *.php,*.cpp,*.cc,*.h,*.c call UpdateTags()
 command! -bang -nargs=? -complete=dir HFiles
   \ call fzf#vim#files(<q-args>, {'source': 'ag --hidden --ignore .git -g ""'}, <bang>0)
 
-nmap <Leader>a :HFiles<CR>
+nmap <Leader>a :Ag<CR>
+nmap <Leader>p :HFiles<CR>
 
 "@ref: https://thoughtbot.com/blog/faster-grepping-in-vim
 if executable("ag")
@@ -182,7 +183,7 @@ vmap <silent><Leader>em :<C-U>call phpactor#ExtractMethod()<CR>
 let NERDTreeShowHidden = 1
 let NERDTreeQuitOnOpen = 1
 nmap <C-n> :NERDTreeToggle <CR>
-nnoremap <silent> <C-o> :NERDTreeFind<CR>
+nnoremap <silent> <C-m> :NERDTreeFind<CR>
 
 "========================== NerdCommentor ==============================
 vmap ++ <plug>NERDCommenterToggle
