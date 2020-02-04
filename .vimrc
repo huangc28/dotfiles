@@ -29,6 +29,7 @@ Plug 'phpactor/phpactor', {'for': 'php', 'do': 'composer install'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
+Plug 'morhetz/gruvbox'
 
 " Javascript plugins
 Plug 'pangloss/vim-javascript'
@@ -61,6 +62,9 @@ set showbreak=↪\
 set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨
 set laststatus=2
 set statusline+=%F
+set lazyredraw
+set rnu
+
 autocmd FileType make setlocal noexpandtab
 autocmd FileType php setlocal omnifunc=phpactor#Complete
 autocmd FileType js,vue,css,html,typescript,javascript setlocal sw=2 sts=2 ts=2 expandtab
@@ -75,6 +79,8 @@ nmap <Leader>s :LeadingSpaceToggle<CR>
 nmap <Leader>l :IndentLinesToggle<CR>
 nmap <Leader>b :Buffer<CR>
 nmap <Leader>f :Files<CR>
+let @" = expand("%:p")
+
 " Press Space to turn off highlighting and clear any message already displayed.
 nnoremap <silent> <Esc> :nohlsearch<Bar>:echo<CR>
 noremap <S-n> :bnext<CR>
@@ -88,6 +94,8 @@ if has("clipboard") " yank to clipboard
                   endif
               endif
 "autocmd BufEnter * silent! lcd %:p:h
+
+colorscheme gruvbox
 "===================== Ctags ===========================
 function! UpdateTags()
   let tags = 'tags'
@@ -240,24 +248,11 @@ autocmd FileType javascript nmap <silent> gr <Plug>(coc-references)
 "let g:multi_cursor_skip_key            = '<C-x>'
 "let g:multi_cursor_quit_key            = '<Esc>'
 
-"========================== Highlight word under cursor ==============================
-"set updatetime=10
-
-"function! HighlightWordUnderCursor()
-    "if getline(".")[col(".")-1] !~# '[[:punct:][:blank:]]'
-        "exec 'match' 'Search' '/\V\<'.expand('<cword>').'\>/'
-    "else
-        "match none
-    "endif
-"endfunction
-
-"autocmd! CursorHold,CursorHoldI * call HighlightWordUnderCursor()
-
 "========================== Highlist trailing white space ==============================
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
+"highlight ExtraWhitespace ctermbg=red guibg=red
+"match ExtraWhitespace /\s\+$/
 " Show trailing whitepace and spaces before a tab:
-autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\t/
+"autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\t/
 
 
 "========================== go vim ==============================
@@ -265,3 +260,4 @@ let g:go_fmt_command = "goimports"
 
 "========================== vim-javascript ==============================
 let g:vim_jsx_pretty_colorful_config = 1
+
