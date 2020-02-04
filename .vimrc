@@ -95,7 +95,14 @@ if has("clipboard") " yank to clipboard
               endif
 "autocmd BufEnter * silent! lcd %:p:h
 
-colorscheme gruvbox
+" copy the file path of the current buffer
+nnoremap <Leader>c :let @+=expand('%:p')<CR>
+
+"===================== gruvbox ===========================
+"Please refer to https://github.com/morhetz/gruvbo://github.com/morhetz/gruvbox 
+
+colorscheme gruvbox 
+
 "===================== Ctags ===========================
 function! UpdateTags()
   let tags = 'tags'
