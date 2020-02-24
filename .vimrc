@@ -98,10 +98,20 @@ if has("clipboard") " yank to clipboard
 " copy the file path of the current buffer
 nnoremap <Leader>c :let @+=expand('%:p')<CR>
 
-"===================== gruvbox ===========================
-"Please refer to https://github.com/morhetz/gruvbo://github.com/morhetz/gruvbox 
+" Remove all trailing whitespace by pressing F5
+" @see https://vi.stackexchange.com/questions/454/whats-the-simplest-way-to-strip-trailing-whitespace-from-all-lines-in-a-file
+fun! TrimWhitespace()
+    let l:save = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:save)
+endfun
+noremap <Leader>w :call TrimWhitespace()
+autocmd BufWritePre * :call TrimWhitespace()
 
-colorscheme gruvbox 
+"===================== gruvbox ===========================
+"Please refer to https://github.com/morhetz/gruvbo://github.com/morhetz/gruvbox
+
+colorscheme gruvbox
 
 "===================== Ctags ===========================
 function! UpdateTags()
