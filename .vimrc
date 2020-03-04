@@ -100,25 +100,24 @@ nnoremap <Leader>c :let @+=expand('%:p')<CR>
 " Remove all trailing whitespace by pressing F5
 " @see https://vi.stackexchange.com/questions/454/whats-the-simplest-way-to-strip-trailing-whitespace-from-all-lines-in-a-file
 fun! TrimWhitespace()
-   "let l:save = winsaveview()
-   "keeppatterns %s/\s\+$//e
-   "call winrestview(l:save)
+   let l:save = winsaveview()
+   keeppatterns %s/\s\+$//e
+   call winrestview(l:save)
 endfun
 noremap <Leader>w :call TrimWhitespace()
 autocmd BufWritePre * :call TrimWhitespace()
 
 "===================== gruvbox ===========================
 "Please refer to https://github.com/morhetz/gruvbo://github.com/morhetz/gruvbox
-
 colorscheme gruvbox
 
 "===================== Ctags ===========================
 function! UpdateTags()
- "let tags = 'tags'
- "if filereadable(tags)
-   "let file = substitute(expand('%:p'), getcwd() . '/', '', '')
-   "" remove tags of file and append tags
-   "call system('sed -ri "/\s+' . escape(file, './') . '/d"' . tags . ' && ctags -a "' . file . '" &')
+ let tags = 'tags'
+ if filereadable(tags)
+   let file = substitute(expand('%:p'), getcwd() . '/', '', '')
+   " remove tags of file and append tags
+   call system('sed -ri "/\s+' . escape(file, './') . '/d"' . tags . ' && ctags -a "' . file . '" &')
  "endif
 endfunction
 autocmd BufWritePost *.php,*.cpp,*.cc,*.h,*.c call UpdateTags()
@@ -126,7 +125,7 @@ autocmd BufWritePost *.php,*.cpp,*.cc,*.h,*.c call UpdateTags()
 " @ref https://aonemd.github.io/blog/finding-things-in-vim
 " search includes hidden files
 command! -bang -nargs=? -complete=dir HFiles
- "\ call fzf#vim#files(<q-args>, {'source': 'ag --hidden --ignore .git -g ""'}, <bang>0)
+ \ call fzf#vim#files(<q-args>, {'source': 'ag --hidden --ignore .git -g ""'}, <bang>0)
 
 nmap <Leader>a :Rg<CR>
 nmap <Leader>p :HFiles<CR>
