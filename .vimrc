@@ -3,6 +3,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/vim-easy-align'
+Plug 'rking/ag.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'
@@ -37,7 +38,7 @@ Plug 'posva/vim-vue'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'maxmellon/vim-jsx-pretty'
 
-"Plug 'terryma/vim-multiple-cursors'
+Plug 'terryma/vim-multiple-cursors'
 call plug#end()
 
 "====================== Settings =======================
@@ -81,19 +82,17 @@ nmap <Leader>b :Buffer<CR>
 nmap <Leader>f :Files<CR>
 let @" = expand("%:p")
 
-" Press Space to turn off highlighting and clear any message already displayed.
-nnoremap <silent> <Esc> :nohlsearch<Bar>:echo<CR>
 noremap <S-n> :bnext<CR>
 noremap <S-p> :bprevious<CR>
 noremap <C-x> :bd<CR>
 let g:vim_markdown_folding_disabled = 1
 if has("clipboard") " yank to clipboard
-      set clipboard=unnamed " copy to the system clipboard
-        if has("unnamedplus") " X11 support
-                set clipboard+=unnamedplus
-                  endif
-              endif
-"autocmd BufEnter * silent! lcd %:p:h
+     set clipboard=unnamed " copy to the system clipboard
+       if has("unnamedplus") " X11 support
+               set clipboard+=unnamedplus
+                 endif
+             endif
+autocmd BufEnter * silent! lcd %:p:h
 
 " copy the file path of the current buffer
 nnoremap <Leader>c :let @+=expand('%:p')<CR>
@@ -101,9 +100,9 @@ nnoremap <Leader>c :let @+=expand('%:p')<CR>
 " Remove all trailing whitespace by pressing F5
 " @see https://vi.stackexchange.com/questions/454/whats-the-simplest-way-to-strip-trailing-whitespace-from-all-lines-in-a-file
 fun! TrimWhitespace()
-    let l:save = winsaveview()
-    keeppatterns %s/\s\+$//e
-    call winrestview(l:save)
+   "let l:save = winsaveview()
+   "keeppatterns %s/\s\+$//e
+   "call winrestview(l:save)
 endfun
 noremap <Leader>w :call TrimWhitespace()
 autocmd BufWritePre * :call TrimWhitespace()
@@ -115,27 +114,27 @@ colorscheme gruvbox
 
 "===================== Ctags ===========================
 function! UpdateTags()
-  let tags = 'tags'
-  if filereadable(tags)
-    let file = substitute(expand('%:p'), getcwd() . '/', '', '')
-    " remove tags of file and append tags
-    call system('sed -ri "/\s+' . escape(file, './') . '/d"' . tags . ' && ctags -a "' . file . '" &')
-  endif
+ "let tags = 'tags'
+ "if filereadable(tags)
+   "let file = substitute(expand('%:p'), getcwd() . '/', '', '')
+   "" remove tags of file and append tags
+   "call system('sed -ri "/\s+' . escape(file, './') . '/d"' . tags . ' && ctags -a "' . file . '" &')
+ "endif
 endfunction
 autocmd BufWritePost *.php,*.cpp,*.cc,*.h,*.c call UpdateTags()
 "======================= fzf ==========================
 " @ref https://aonemd.github.io/blog/finding-things-in-vim
 " search includes hidden files
 command! -bang -nargs=? -complete=dir HFiles
-  \ call fzf#vim#files(<q-args>, {'source': 'ag --hidden --ignore .git -g ""'}, <bang>0)
+ "\ call fzf#vim#files(<q-args>, {'source': 'ag --hidden --ignore .git -g ""'}, <bang>0)
 
-nmap <Leader>a :Ag<CR>
+nmap <Leader>a :Rg<CR>
 nmap <Leader>p :HFiles<CR>
 
 "@ref: https://thoughtbot.com/blog/faster-grepping-in-vim
 if executable("ag")
-    " Use ag over grep
-    set grepprg=ag\ --nogroup\ --nocolor
+   "" Use ag over grep
+   "set grepprg=ag\ --nogroup\ --nocolor
 endif
 
 "======================= Air Line ==========================
@@ -152,13 +151,13 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#buffer_nr_show = 1
 "========================== PHP ============================
 function! PhpSyntaxOverride()
-    " Put snippet overrides in this function.
-    hi! link phpDocTags phpDefine
-    hi! link phpDocParam phpType
+   "" Put snippet overrides in this function.
+   "hi! link phpDocTags phpDefine
+   "hi! link phpDocParam phpType
 endfunction
 augroup phpSyntaxOverride
-    autocmd!
-    autocmd FileType php call PhpSyntaxOverride()
+   "autocmd!
+   "autocmd FileType php call PhpSyntaxOverride()
 augroup END
 " php cs fixer
 let g:php_cs_fixer_level = 'psr2'
@@ -218,13 +217,13 @@ nmap ++ <plug>NERDCommenterToggle
 
 " extensions
 let g:coc_global_extensions = [
-  \ 'coc-snippets',
-  \ 'coc-pairs',
-  \ 'coc-tsserver',
-  \ 'coc-eslint',
-  \ 'coc-prettier',
-  \ 'coc-json',
-  \ ]
+ \ 'coc-snippets',
+ \ 'coc-pairs',
+ \ 'coc-tsserver',
+ \ 'coc-eslint',
+ \ 'coc-prettier',
+ \ 'coc-json',
+ \ ]
 set hidden "Some servers have issues with backup files, see #649 set nobackup set nowritebackup " Better display for messages set cmdheight=2 " You will have bad experience for diagnostic messages when it's default 4000.
 set cmdheight=2
 set updatetime=300
@@ -232,14 +231,14 @@ set updatetime=300
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+     \ pumvisible() ? "\<C-n>" :
+     \ <SID>check_back_space() ? "\<TAB>" :
+     \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
+ let col = col('.') - 1
+ return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
@@ -253,7 +252,7 @@ autocmd FileType javascript nmap <silent> gi <Plug>(coc-implementation)
 autocmd FileType javascript nmap <silent> gr <Plug>(coc-references)
 
 "========================== vim multiple cursor ==============================
-"let g:multi_cursor_use_default_mapping=0
+" let g:multi_cursor_use_default_mapping=0
 
 " Default mapping
 "let g:multi_cursor_start_word_key      = '<C-S-n>'
