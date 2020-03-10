@@ -32,6 +32,11 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
 Plug 'morhetz/gruvbox'
 
+" Rust plugin
+Plug 'rust-lang/rust.vim'
+Plug 'mattn/webapi-vim'
+Plug 'racer-rust/vim-racer'
+
 " Javascript plugins
 Plug 'pangloss/vim-javascript'
 Plug 'posva/vim-vue'
@@ -80,6 +85,7 @@ nmap <Leader>s :LeadingSpaceToggle<CR>
 nmap <Leader>l :IndentLinesToggle<CR>
 nmap <Leader>b :Buffer<CR>
 nmap <Leader>f :Files<CR>
+nnoremap <silent> <leader>n :nohlsearch<CR>
 let @" = expand("%:p")
 
 noremap <S-n> :bnext<CR>
@@ -92,7 +98,6 @@ if has("clipboard") " yank to clipboard
                set clipboard+=unnamedplus
                  endif
              endif
-autocmd BufEnter * silent! lcd %:p:h
 
 " copy the file path of the current buffer
 nnoremap <Leader>c :let @+=expand('%:p')<CR>
@@ -106,6 +111,25 @@ fun! TrimWhitespace()
 endfun
 noremap <Leader>w :call TrimWhitespace()
 autocmd BufWritePre * :call TrimWhitespace()
+
+"===================== rust ===========================
+" @see https://github.com/rust-lang/rust.vim
+let g:rustfmt_autosave = 1
+let g:rust_clip_command = 'pbcopy'
+
+" @see https://github.com/racer-rust/vim-racer
+" @TODO find a way to retrieve user HOME directory path in .vimrc
+let g:racer_cmd = "/Users/huangchihan/.cargo/bin/racer"
+let g:racer_experimental_completer = 1
+let g:racer_insert_paren = 1
+augroup Racer
+    autocmd!
+    autocmd FileType rust nmap <buffer> gd         <Plug>(rust-def)
+    autocmd FileType rust nmap <buffer> gs         <Plug>(rust-def-split)
+    autocmd FileType rust nmap <buffer> gx         <Plug>(rust-def-vertical)
+    autocmd FileType rust nmap <buffer> gt         <Plug>(rust-def-tab)
+    autocmd FileType rust nmap <buffer> <leader>gd <Plug>(rust-doc)
+augroup END
 
 "===================== gruvbox ===========================
 "Please refer to https://github.com/morhetz/gruvbo://github.com/morhetz/gruvbox
@@ -121,12 +145,11 @@ function! UpdateTags()
  "endif
 endfunction
 autocmd BufWritePost *.php,*.cpp,*.cc,*.h,*.c call UpdateTags()
+
+"======================= ag.vim ==========================
+let g:ag_working_path_mode="r"
 "======================= fzf ==========================
 " @ref https://aonemd.github.io/blog/finding-things-in-vim
-" search includes hidden files
-command! -bang -nargs=? -complete=dir HFiles
- \ call fzf#vim#files(<q-args>, {'source': 'ag --hidden --ignore .git -g ""'}, <bang>0)
-
 nmap <Leader>a :Rg<CR>
 nmap <Leader>p :HFiles<CR>
 
@@ -176,7 +199,8 @@ let g:indentLine_color_term = 239
 let g:indentLine_leadingSpaceChar = '.'
 " autocmd FileType html,css,php,c,cpp,swift,python,ruby :IndentLinesEnable
 autocmd FileType html,css,php,c,cpp,swift,python,ruby
-"=========================== indentLine ============================
+
+"=========================== nerdtree ============================
 let g:NERDTreeDirArrows = 1
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
