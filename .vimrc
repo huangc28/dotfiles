@@ -42,8 +42,6 @@ Plug 'pangloss/vim-javascript'
 Plug 'posva/vim-vue'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'maxmellon/vim-jsx-pretty'
-
-Plug 'terryma/vim-multiple-cursors'
 call plug#end()
 
 "====================== Settings =======================
@@ -268,34 +266,21 @@ endfunction
 " position.
 " Coc only does snippet and additional edit on confirm.
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
 " Remap keys for gotos
-autocmd FileType javascript nmap <silent> gd <Plug>(coc-definition)
-autocmd FileType javascript nmap <silent> gy <Plug>(coc-type-definition)
-autocmd FileType javascript nmap <silent> gi <Plug>(coc-implementation)
-autocmd FileType javascript nmap <silent> gr <Plug>(coc-references)
+"autocmd FileType javascript, go nmap <silent> gd <Plug>(coc-definition)
+"autocmd FileType javascript, go nmap <silent> gy <Plug>(coc-type-definition)
+"autocmd FileType javascript, go nmap <silent> gi <Plug>(coc-implementation)
+"autocmd FileType javascript, go nmap <silent> gr <Plug>(coc-references)
 
-"========================== vim multiple cursor ==============================
-" let g:multi_cursor_use_default_mapping=0
-
-" Default mapping
-"let g:multi_cursor_start_word_key      = '<C-S-n>'
-"let g:multi_cursor_select_all_word_key = '<A-n>'
-"let g:multi_cursor_start_key           = 'g<C-n>'
-"let g:multi_cursor_select_all_key      = 'g<A-n>'
-"let g:multi_cursor_next_key            = '<C-S-n>'
-"let g:multi_cursor_prev_key            = '<C-p>'
-"let g:multi_cursor_skip_key            = '<C-x>'
-"let g:multi_cursor_quit_key            = '<Esc>'
-
-"========================== Highlist trailing white space ==============================
-"highlight ExtraWhitespace ctermbg=red guibg=red
-"match ExtraWhitespace /\s\+$/
-" Show trailing whitepace and spaces before a tab:
-"autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\t/
-
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
 "========================== go vim ==============================
 let g:go_fmt_command = "goimports"
+let g:go_def_mapping_enabled = 0
 
 "========================== vim-javascript ==============================
 let g:vim_jsx_pretty_colorful_config = 1
