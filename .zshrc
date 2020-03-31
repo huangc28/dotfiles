@@ -4,6 +4,15 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 #export ZSH="/Users/apple/.oh-my-zsh"
 export ZSH="${HOME}/.oh-my-zsh"
 
+# load powerlevel9k
+source /usr/local/opt/powerlevel9k/powerlevel9k.zsh-theme
+
+[ -z "$ZSH_NAME" ] && [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -72,22 +81,16 @@ fi
 export FZF_DEFAULT_COMMAND='ag -l --nogroup  --nocolor --hidden -g ""'
 
 # export GO path
-export GOPATH="/Users/apple/go"
-export SSGOPATH="$GOPATH/src/github.com/virtualjoy/go-backend-api"
+export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin/:$PATH"
-export PATH="/Users/apple/Library/Python/2.7/bin:$PATH"
-export PATH="$PATH:/usr/local/sbin"
+#export PATH="/Users/apple/Library/Python/2.7/bin:$PATH"
+#export PATH="$PATH:/usr/local/sbin"
 
 # export php composer's system-side vendor bin directory
 export PATH=$HOME/.config/composer/vendor/bin:$PATH
 
 # My shell commands
 export PATH=$PATH":$HOME/bin"
-
-# NVM loading script
- 
-export NVM_DIR="/Users/apple/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # use brew version of vim
 alias vim="/usr/local/bin/vim"
@@ -183,10 +186,10 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 [[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc
+export PATH="/usr/local/opt/m4/bin:$PATH"
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f "${HOME}/google-cloud-sdk/path.zsh.inc" ]; then . "${HOME}/google-cloud-sdk/path.zsh.inc"; fi
+if [ -f "$HOME/Documents/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/Documents/google-cloud-sdk/path.zsh.inc"; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f "${HOME}/google-cloud-sdk/completion.zsh.inc" ]; then . "${HOME}/google-cloud-sdk/completion.zsh.inc"; fi
-
+if [ -f "$HOME/Documents/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/Documents/google-cloud-sdk/completion.zsh.inc"; fi

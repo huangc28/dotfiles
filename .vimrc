@@ -56,10 +56,27 @@ set nocompatible
 set nobackup " no *~ backup files
 set noswapfile
 set nowritebackup
+
+" tabwise settings, makes the code look the same everywhere
+"set bs=indent,eol,start
+"set autoindent
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
 set expandtab
-set shiftwidth=4
-set softtabstop=4
-set tabstop=4
+"set smarttab
+
+" Use additional block to set indentation for exception
+if has("autocmd")
+  augroup styles
+    autocmd!
+    " Custom filetypes settings: Python, Shell, Go, JSON
+    au FileType python,sh set tabstop=4 shiftwidth=4 softtabstop=4
+    au FileType go set noexpandtab tabstop=8 shiftwidth=8 softtabstop=8
+    au BufRead,BufNewFile *.json setfiletype javascript
+  augroup END
+endif
+
 set tags+=~/.vim/tags,./tags,tags;
 set hidden " leave buffer without save
 set showbreak=↪\
@@ -71,7 +88,7 @@ set rnu
 
 autocmd FileType make setlocal noexpandtab
 autocmd FileType php setlocal omnifunc=phpactor#Complete
-autocmd FileType js,vue,css,html,typescript,javascript setlocal sw=2 sts=2 ts=2 expandtab
+"autocmd FileType js,vue,css,html,typescript,javascript setlocal sw=2 sts=2 ts=2 expandtab
 nmap <F2> :ctags -R<CR>
 nmap <F4> :w<CR>:make<CR>
 nmap <F5> :w<CR>
