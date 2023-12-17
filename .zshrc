@@ -17,28 +17,7 @@ export NVM_DIR="$HOME/.nvm"
 
 # fzf default command
 export FZF_COMPLETION_TRIGGER='**'
-# bindkey '^T' fzf-completion
-# bindkey '^I' $fzf_default_completion
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-# export FZF_COMPLETION_TRIGGER='**'
-# export FZF_COMPLETION_OPTS='--border --info=inline'
-# autoload -Uz compinit && compinit
-# autoload -Uz bashcompinit && bashcompinit
-#
-# _fzf_complete_path() {
-#   _fzf_complete --reverse --multi --prompt="Path> " -- "$@" < <(
-#     find . -type f 2> /dev/null
-#   )
-# }
-#
-# _fzf_complete_path_post() {
-#   awk '{print $NF}'
-# }
-#
-# zle -N _fzf_complete_path
-# zle -N _fzf_complete_path_post
-# bindkey '^I' _fzf_complete_path
 
 # export GO path
 export GOPATH="$HOME/go"
