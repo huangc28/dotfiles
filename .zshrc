@@ -98,4 +98,5 @@ export GIT_EDITOR='nvim'
 # Set `pass` password manager to use nvim
 export EDITOR='nvim'
 
-
+# Homebrew
+eval "$(/opt/homebrew/bin/brew shellenv)"
